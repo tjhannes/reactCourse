@@ -1,6 +1,5 @@
+import React, { useState } from 'react';
 import "./App.css";
-import Animals from "./components/Animals";
-import FilterBar from "./components/FilterBar";
 
 function App() {
   const animals = [
@@ -15,7 +14,7 @@ function App() {
     {
       name: "Meerkat",
       latinName: "Suricata suricatta",
-      img: "./animals/meerkat.jpeg",
+      img: "./animals/Meerkat.jpeg",
       description:
         "The meerkat is not a cat. It’s actually a small mongoose. Native to southern Africa, the meerkat has enormous eyes and a long tail. Meerkats have incredibly cute behavior, including sitting up high on their hind legs and looking around.",
       region: "Africa",
@@ -24,7 +23,7 @@ function App() {
     {
       name: "hedgehog",
       latinName: "Erinaceusis",
-      img: "./animals/hedgehog.jpeg",
+      img: "./animals/Hedgehog.jpeg",
       description:
         "This tiny creature is known for its round, spiked body and intensely adorable facial expression. The hedgehog is a member of the Erinaceinae family. There are 15 species of hedgehog. This cute critter lives in Europe, Asia, and Africa. Hedgehogs were introduced to New Zealand. There are no hedgehogs in Australia or North America. Hedgehogs are tiny, but they are not defenseless. Their sharp teeth and spines make them difficult for predators to catch and eat.",
       region: "Europe",
@@ -48,12 +47,38 @@ function App() {
     },
   ];
 
-  const animalsSelectorsChoice = animals.filter(
-    (animal) => animal.selectorsChoice
-  );
+  const [displayedAnimals, setDisplayedAnimals] = useState(animals);
 
-  const navState = "selectorsChoice";
-  return <div className="App"></div>;
+  const showSelectorsChoice = () => {
+    const selectorsChoiceAnimals = animals.filter(
+      (animal) => animal.selectorsChoice
+    );
+    setDisplayedAnimals(selectorsChoiceAnimals);
+  };
+
+  const showAllAnimals = () => {
+    setDisplayedAnimals(animals);
+  };
+
+  return (
+    <div className="App">
+      <h1>Animal List</h1>
+      <button onClick={showSelectorsChoice}>Show SelectorsChoice</button>
+      <button onClick={showAllAnimals}>Show All Animals</button>
+      <ul>
+        {displayedAnimals.map((animal, index) => (
+          <li key={index}>
+            <h2>{animal.name}</h2>
+            <p>{animal.latinName}</p>
+            <img src={animal.img} alt={animal.name} />
+            <p>{animal.description}</p>
+            <p>Region: {animal.region}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 }
 
 export default App;
+
