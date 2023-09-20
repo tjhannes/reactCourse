@@ -1,6 +1,6 @@
 import "./App.css";
-import Animals from "./components/Animals";
-import FilterBar from "./components/FilterBar";
+// import Animals from "./components/Animals";
+// import FilterBar from "./components/FilterBar";
 
 function App() {
   const animals = [
