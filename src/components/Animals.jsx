@@ -15,6 +15,9 @@ function Animals({ animals }) {
             borderRadius: "10px",
             textAlign: "left",
           }}
+          onClick={() => {
+            alert("The " + animal.name + " is a cute animal");
+          }}
         >
           <div>
             <img
