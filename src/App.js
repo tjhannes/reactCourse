@@ -53,7 +53,15 @@ function App() {
   );
 
   const navState = "selectorsChoice";
-  return <div className="App"></div>;
+  return (
+    <div className="App">
+      <FilterBar />
+      {navState === "selectorsChoice" && (
+        <Animals animals={animalsSelectorsChoice} />
+      )}
+      {navState !== "selectorsChoice" && <Animals animals={animals} />}
+    </div>
+  );
 }
 
 export default App;
