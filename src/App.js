@@ -1,6 +1,7 @@
+import { useState } from "react";
 import "./App.css";
-// import Animals from "./components/Animals";
-// import FilterBar from "./components/FilterBar";
+import Animals from "./components/Animals";
+import FilterBar from "./components/FilterBar";
 
 function App() {
   const animals = [
@@ -15,7 +16,7 @@ function App() {
     {
       name: "Meerkat",
       latinName: "Suricata suricatta",
-      img: "./animals/meerkat.jpeg",
+      img: "./animals/Meerkat.jpeg",
       description:
         "The meerkat is not a cat. It’s actually a small mongoose. Native to southern Africa, the meerkat has enormous eyes and a long tail. Meerkats have incredibly cute behavior, including sitting up high on their hind legs and looking around.",
       region: "Africa",
@@ -24,7 +25,7 @@ function App() {
     {
       name: "hedgehog",
       latinName: "Erinaceusis",
-      img: "./animals/hedgehog.jpeg",
+      img: "./animals/Hedgehog.jpeg",
       description:
         "This tiny creature is known for its round, spiked body and intensely adorable facial expression. The hedgehog is a member of the Erinaceinae family. There are 15 species of hedgehog. This cute critter lives in Europe, Asia, and Africa. Hedgehogs were introduced to New Zealand. There are no hedgehogs in Australia or North America. Hedgehogs are tiny, but they are not defenseless. Their sharp teeth and spines make them difficult for predators to catch and eat.",
       region: "Europe",
@@ -34,7 +35,7 @@ function App() {
       latinName: "Setonix brachyurus",
       img: "./animals/Quokka.jpeg",
       description:
-        "The quokka is also known as the short-tailed scrub wallaby. It is a small, round creature about the size of a cat. Its face looks like a cross between a mouse and a rabbit. The quokka is a marsupial. It’s nocturnal and carries its young in a pouch.  ",
+        "The quokka is also known as the short-tailed scrub wallaby. It is a small, round creature about the size of a cat. Its face looks like a cross between a mouse and a rabbit. The quokka is a marsupial. It’s nocturnal and carries its young in a pouch.",
       region: "Australia",
     },
     {
@@ -48,12 +49,15 @@ function App() {
     },
   ];
 
-  const animalsSelectorsChoice = animals.filter(
-    (animal) => animal.selectorsChoice
-  );
+  const [filter, setFilter] = useState(false);
+  const updateFilter = (value) => { setFilter(value); }
 
-  const navState = "selectorsChoice";
-  return <div className="App"></div>;
+  const animalsSelectorsChoice = animals.filter(animal => animal.selectorsChoice);
+
+  return <div className="App">
+    <FilterBar filter={filter} updateFilter={updateFilter} />
+    <Animals list={filter ? animalsSelectorsChoice : animals} />
+  </div>;
 }
 
 export default App;
