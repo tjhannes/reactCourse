@@ -49,14 +49,14 @@ function App() {
     },
   ];
 
-  const [filter, setFilter] = useState(false);
-  const updateFilter = (value) => { setFilter(value); }
+  const [selectorsChoice, setSelectorsChoice] = useState(false);
+  const updateSelectorsChoice = (value) => { setSelectorsChoice(value); }
 
   const animalsSelectorsChoice = animals.filter(animal => animal.selectorsChoice);
 
   return <div className="App">
-    <FilterBar filter={filter} updateFilter={updateFilter} />
-    <Animals list={filter ? animalsSelectorsChoice : animals} />
+    <FilterBar filter={selectorsChoice} updateFilter={updateSelectorsChoice} />
+    <Animals list={selectorsChoice ? animalsSelectorsChoice : animals} />
   </div>;
 }
 
