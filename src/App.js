@@ -1,7 +1,5 @@
-import { useState } from "react";
 import "./App.css";
-import Animals from "./components/Animals";
-import FilterBar from "./components/FilterBar";
+import React from "react";
 
 function App() {
   const animals = [
@@ -49,22 +47,32 @@ function App() {
     },
   ];
 
-  const [selectorsChoice, setSelectorsChoice] = useState(false);
-  const updateSelectorsChoice = (value) => {
-    setSelectorsChoice(value);
-  };
-
   const animalsSelectorsChoice = animals.filter(
     (animal) => animal.selectorsChoice
   );
 
+  // const navState = "selectorsChoice";
   return (
     <div className="App">
-      <FilterBar
-        filter={selectorsChoice}
-        updateFilter={updateSelectorsChoice}
-      />
-      <Animals list={selectorsChoice ? animalsSelectorsChoice : animals} />
+      <h1 className="title-hidden">Animals</h1>
+      <div className="animal-list">
+        {animalsSelectorsChoice.map((animal, i) => (
+          <div key={i} className="animal-info">
+            <figure className="figure">
+              <img className="img" src={animal.img} alt={animal.name} />
+            </figure>
+
+            <div className="">
+              <h2>{animal.name}</h2>
+              <p>{animal.description}</p>
+              <div className="animal-info__location">
+                <p>{animal.latinName}</p>
+                <p> {animal.region}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
