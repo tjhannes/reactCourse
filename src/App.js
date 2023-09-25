@@ -1,5 +1,7 @@
+import AnimalBox from "./AnimalBox";
 import "./App.css";
 import React from "react";
+import NavBar from "./NavBar";
 
 function App() {
   const animals = [
@@ -51,27 +53,18 @@ function App() {
     (animal) => animal.selectorsChoice
   );
 
-  // const navState = "selectorsChoice";
+  const navState = "selectorsChoice";
   return (
     <div className="App">
-      <h1 className="title-hidden">Animals</h1>
+      <NavBar />
       <div className="animal-list">
-        {animalsSelectorsChoice.map((animal, i) => (
-          <div key={i} className="animal-info">
-            <figure className="figure">
-              <img className="img" src={animal.img} alt={animal.name} />
-            </figure>
+        {navState === "selectorsChoice" &&
+          animalsSelectorsChoice.map((animal, i) => (
+            <AnimalBox key={i} animal={animal} />
+          ))}
 
-            <div className="">
-              <h2>{animal.name}</h2>
-              <p>{animal.description}</p>
-              <div className="animal-info__location">
-                <p>{animal.latinName}</p>
-                <p> {animal.region}</p>
-              </div>
-            </div>
-          </div>
-        ))}
+        {navState !== "selectorsChoice" &&
+          animals.map((animal, i) => <AnimalBox key={i} animal={animal} />)}
       </div>
     </div>
   );
