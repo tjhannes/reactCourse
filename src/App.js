@@ -1,7 +1,8 @@
-import AnimalBox from "./AnimalBox";
 import "./App.css";
 import React from "react";
+
 import NavBar from "./NavBar";
+import { AnimalBoxList } from "./AnimalBoxList/AnimalBoxList";
 
 function App() {
   const animals = [
@@ -56,16 +57,13 @@ function App() {
   const navState = "selectorsChoice";
   return (
     <div className="App">
-      <NavBar />
-      <div className="animal-list">
-        {navState === "selectorsChoice" &&
-          animalsSelectorsChoice.map((animal, i) => (
-            <AnimalBox key={i} animal={animal} />
-          ))}
+      <NavBar animalsArray={animals} />
 
-        {navState !== "selectorsChoice" &&
-          animals.map((animal, i) => <AnimalBox key={i} animal={animal} />)}
-      </div>
+      {navState === "selectorsChoice" ? (
+        <AnimalBoxList animals={animalsSelectorsChoice} />
+      ) : (
+        <AnimalBoxList animals={animals} />
+      )}
     </div>
   );
 }
