@@ -3,6 +3,7 @@ import React from "react";
 
 import NavBar from "./NavBar";
 import { AnimalBoxList } from "./AnimalBoxList/AnimalBoxList";
+import { useState } from "react";
 
 function App() {
   const animals = [
@@ -54,16 +55,22 @@ function App() {
     (animal) => animal.selectorsChoice
   );
 
-  const navState = "selectorsChoice";
+  // const navState = "selectorsChoice";
+
+  const [displayAllAnimals, setDisplayAllAnimals] = useState(true);
+
   return (
     <div className="App">
-      <NavBar animalsArray={animals} />
+      <NavBar animals={animals} setDisplayAllAnimals={setDisplayAllAnimals} />
+      <AnimalBoxList
+        animals={displayAllAnimals ? animals : animalsSelectorsChoice}
+      />
 
-      {navState === "selectorsChoice" ? (
+      {/* {navState === "selectorsChoice" ? (
         <AnimalBoxList animals={animalsSelectorsChoice} />
       ) : (
         <AnimalBoxList animals={animals} />
-      )}
+      )} */}
     </div>
   );
 }
