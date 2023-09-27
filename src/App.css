@@ -42,7 +42,10 @@
   background-position: center;
 }
 
-.animals-list{
+.title-hidden {
+  visibility: hidden;
+}
+.animals-list {
   padding: 0 16px 16px;
 }
 
@@ -54,7 +57,7 @@
   display: flex;
 }
 
-.animal-info>figure {
+.animal-info > figure {
   min-width: 200px;
   height: 200px;
   overflow: hidden;
@@ -62,10 +65,10 @@
   justify-content: center;
   margin-inline-start: 0;
   margin-inline-end: 32px;
-  border-radius: 120px;
+  border-radius: 50%;
 }
 
-.animal-info>figure>img {
+.animal-info > figure > img {
   height: 100%;
 }
 
@@ -73,8 +76,10 @@
   padding-top: 16px;
   font-weight: bold;
   color: gray;
+  display: flex;
+  gap: 20px;
 }
 
-.animal-info__location>span:first-child {
+.animal-info__location > span:first-child {
   margin-right: 40px;
 }
